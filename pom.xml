@@ -1,12 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.serverless</groupId>
-  <artifactId>aws-java-simple-http-endpoint</artifactId>
+  <groupId>com.github.samair</groupId>
+  <artifactId>cloudFunxtionHandler</artifactId>
   <packaging>jar</packaging>
   <version>dev</version>
-  <name>aws-java-simple-http-endpoint</name>
+  <name>${project.groupId}:${project.artifactId}</name>
 
+<description>
+   A Java framework to enable easy server-less API development.
+</description>
+<url>
+https://github.com/samair/cloudFunctionHandler
+</url>
+
+
+<licenses>
+    <license>
+        <name>MIT License</name>
+        <url>https://github.com/samair/cloudFunctionHandler/blob/master/LICENSE.md</url>
+    </license>
+</licenses>
+<developers>
+    <developer>
+        <name>Sameer Chandra</name>
+        <email>tsameerc@gmail.com</email>
+        <organization>samair</organization>
+        <organizationUrl>https://github.com/samair</organizationUrl>
+    </developer>
+</developers>
+
+<scm>
+    <connection>scm:git:git://github.com/samair/cloudFunctionHandler.git</connection>
+    <developerConnection>scm:git:ssh://github.com:samair/cloudFunctionHandler.git</developerConnection>
+    <url>https://github.com/samair/cloudFunctionHandler</url>
+</scm>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -91,6 +119,61 @@
 				  </execution>
 				</executions>
 			</plugin>
+      <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <version>3.1.1</version>
+    <executions>
+        <execution>
+            <id>attach-javadocs</id>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+    <version>3.2.1</version>
+    <executions>
+        <execution>
+            <id>attach-sources</id>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <version>1.6</version>
+    <executions>
+        <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>sign</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
+
+<plugin>
+    <groupId>org.sonatype.plugins</groupId>
+    <artifactId>nexus-staging-maven-plugin</artifactId>
+    <version>1.6.8</version>
+    <extensions>true</extensions>
+    <configuration>
+        <serverId>ossrh</serverId>
+        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+    </configuration>
+</plugin>
+
     </plugins>
     
   </build>
