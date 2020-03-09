@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface HandlerMapping {
+public @interface RestHandlerMapping {
 	
 	public String path() default "";
 	public HttpType httpMethod() default HttpType.GET;

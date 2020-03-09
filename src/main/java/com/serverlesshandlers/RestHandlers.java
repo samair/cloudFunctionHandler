@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface RestHandlers {
 	
-	public ApiGatewayResponse invoke(String httpBody, Map<String,Object> queryParams);
+	public Response invoke(String httpBody, Map<String,Object> queryParams);
 
 }
