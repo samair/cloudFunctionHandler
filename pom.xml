@@ -94,8 +94,6 @@ https://github.com/samair/cloudFunctionHandler
           </execution>
         </executions>
       </plugin>
-      
-      
       <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -173,7 +171,25 @@ https://github.com/samair/cloudFunctionHandler
         <autoReleaseAfterClose>false</autoReleaseAfterClose>
     </configuration>
 </plugin>
-
+      
+       <plugin>
+                <groupId>com.github.samair</groupId>
+                <artifactId>cludFunctionCreator</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <configuration>
+                    <!-- optional, the command parameter can be changed here too -->
+                    <provider>aws</provider>
+                    <region>apac1</region>
+                </configuration>
+                <executions>
+                    <execution>
+                    <phase>install</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
     </plugins>
     
   </build>
