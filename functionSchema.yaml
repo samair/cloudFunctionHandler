@@ -1,0 +1,14 @@
+---
+provider: "aws"
+runEnv: "java8"
+payload: null
+function:
+  name: "productFunction"
+  handler: null
+  trigger:
+  - type: "REST"
+    path: "\"/\""
+    method: "com.serverlesshandlers.annotations.HttpType.GET"
+  - type: "REST"
+    path: "\"/\""
+    method: "com.serverlesshandlers.annotations.HttpType.POST"

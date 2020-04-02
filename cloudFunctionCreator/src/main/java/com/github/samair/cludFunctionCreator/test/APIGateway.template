@@ -1,0 +1,12 @@
+{
+  "Type" : "AWS::ApiGateway::RestApi",
+  "Properties" : {
+      "Name": "Sample",
+      "EndpointConfiguration": {
+                    "Types": [
+                        "EDGE"
+                    ]
+                },
+                "Policy": ""
+    }
+}

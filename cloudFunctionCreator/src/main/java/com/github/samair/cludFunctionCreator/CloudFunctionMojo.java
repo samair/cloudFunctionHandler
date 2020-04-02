@@ -22,6 +22,13 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.github.samair.cludFunctionCreator.aws.resources.Properties;
+import com.github.samair.cludFunctionCreator.aws.resources.Resources;
+import com.github.samair.cludFunctionCreator.aws.resources.RestAPI;
+import com.github.samair.cludFunctionCreator.aws.resources.Template;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,13 +41,9 @@ import java.io.IOException;
  * @phase process-sources
  */
 
-
-
 @Mojo(name = "create", defaultPhase = LifecyclePhase.PACKAGE)
-public class CloudFunctionMojo
-    extends AbstractMojo
-{
-	
+public class CloudFunctionMojo extends AbstractMojo {
+
 	/**
 	 * The git command used to retrieve the current commit hash.
 	 */
@@ -48,10 +51,51 @@ public class CloudFunctionMojo
 	private String provider;
 	@Parameter(property = "region", defaultValue = "aws")
 	private String region;
+
+	public void execute() throws MojoExecutionException {
+		System.out.println("Generation Cloud formation JSON");
+		ObjectMapper mapper = new ObjectMapper();
+
+		
+		//Read Generated JSON file
+		
+		try {
+			ObjectMapper yamlMapper = new ObjectMapper();
+			yamlMapper = new ObjectMapper(new YAMLFactory());
+			FunctionSchema schema = yamlMapper.readValue(new File("functionSchema.yaml"), FunctionSchema.class);
+			System.out.println("Schema:"+schema.toString());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Template template = new Template();
+		template.setAWSTemplateFormatVersion("2010-09-09");
+		
+		
+		Resources resources = new Resources();
+		
+		RestAPI productAPI = new RestAPI();
+		Properties properties = new Properties();
+		properties.setName("TestCloudFunction");
+		productAPI.setProperties(properties);
+		resources.setAdditionalProperty("AWSAPIGatewayRestAPI",productAPI);
+		
+		template.setResources(resources);
+
+		try {
+			mapper.writeValue(new File("Template.json"), template);
+			
+			String jsonInString = mapper.writeValueAsString(template);
+			System.out.println(jsonInString);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	
-    public void execute()
-        throws MojoExecutionException
-    {
-       System.out.println("Hello from plugin");
-    }
+	public static void main(String[] args) throws MojoExecutionException {
+		CloudFunctionMojo mojo = new CloudFunctionMojo();
+		mojo.execute();
+	}
 }

@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.samair</groupId>
-  <artifactId>cludFunctionCreator</artifactId>
+  <artifactId>cloudFunctionCreator</artifactId>
   <packaging>maven-plugin</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>cludFunctionCreator Maven Mojo</name>
+  <name>cloudFunctionCreator Maven Mojo</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -19,6 +19,18 @@
     </prerequisites>
     
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-cloudformation -->
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk-cloudformation</artifactId>
+    <version>1.11.740</version>
+</dependency>
+  
+   <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-core</artifactId>
+      <version>1.1.0</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
@@ -29,6 +41,29 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+     <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.10.3 </version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.10.2</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-yaml</artifactId>
+    <version>2.10.3</version>
+</dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.10.3 </version>
     </dependency>
     <dependency>
             <!-- plugin interfaces and base classes -->

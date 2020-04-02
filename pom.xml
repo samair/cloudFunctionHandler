@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
   <version>0.0.1</version>
   <name>${project.groupId}:${project.artifactId}</name>
-
+ 
 <description>
    A Java framework to enable easy server-less API development.
 </description>
@@ -36,6 +36,7 @@ https://github.com/samair/cloudFunctionHandler
     <url>https://github.com/samair/cloudFunctionHandler</url>
 </scm>
   <properties>
+  <auto-service.version>1.0-rc2</auto-service.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,6 +63,14 @@ https://github.com/samair/cloudFunctionHandler
       <artifactId>jackson-databind</artifactId>
       <version>2.10.2</version>
     </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-yaml</artifactId>
+    <version>2.10.3</version>
+</dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
@@ -72,11 +81,36 @@ https://github.com/samair/cloudFunctionHandler
     <artifactId>reflections</artifactId>
     <version>0.9.12</version>
 </dependency>
+
+
+    <dependency>
+        <groupId>com.google.auto.service</groupId>
+        <artifactId>auto-service</artifactId>
+        <version>${auto-service.version}</version>
+        <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <!-- http://docs.aws.amazon.com/lambda/latest/dg/java-create-jar-pkg-maven-no-ide.html -->
   <build>
+  
+  
     <plugins>
+    <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.5.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                 <compilerArgument>
+                    -proc:none
+                </compilerArgument>
+    
+                </configuration>
+   
+           
+        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -144,6 +178,8 @@ https://github.com/samair/cloudFunctionHandler
     </executions>
 </plugin>
 
+
+<!--
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-gpg-plugin</artifactId>
@@ -171,10 +207,10 @@ https://github.com/samair/cloudFunctionHandler
         <autoReleaseAfterClose>false</autoReleaseAfterClose>
     </configuration>
 </plugin>
-      
+      -->
        <plugin>
                 <groupId>com.github.samair</groupId>
-                <artifactId>cludFunctionCreator</artifactId>
+                <artifactId>cloudFunctionCreator</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
                 <configuration>
                     <!-- optional, the command parameter can be changed here too -->
