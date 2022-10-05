@@ -61,7 +61,7 @@ https://github.com/samair/cloudFunctionHandler
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.10.2</version>
+      <version>2.12.6.1</version>
     </dependency>
     
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
